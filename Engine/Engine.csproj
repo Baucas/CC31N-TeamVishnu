@@ -6,4 +6,12 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
-</Project>
+  <ItemGroup>
+    <None Remove="Images\Location\Home.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Images\Location\Home.png" />
+  </ItemGroup>
+
+ </Project>
