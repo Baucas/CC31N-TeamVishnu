@@ -104,6 +104,7 @@
 
                 <TextBlock Grid.Row="2"
                            HorizontalAlignment="Center"
+                           TextWrapping="Wrap"
                            Text="{Binding CurrentLocation.Description}"/>
             </Grid>
             <Label Grid.Row="1" Grid.Column="0" Content="Enemy information" Background="RoyalBlue"/>

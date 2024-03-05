@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
@@ -7,11 +7,53 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Images\Location\AcornGarden.png" />
+    <None Remove="Images\Location\Bear.png" />
+    <None Remove="Images\Location\HealingFountain.png" />
     <None Remove="Images\Location\Home.png" />
+    <None Remove="Images\Location\HoneyGarden.png" />
+    <None Remove="Images\Location\KarloHouse.png" />
+    <None Remove="Images\Location\MarkFarm.png" />
+    <None Remove="Images\Location\MarkHouse.png" />
+    <None Remove="Images\Location\Shop.png" />
+    <None Remove="Images\Location\TownGate.png" />
+    <None Remove="Images\Location\TownHall.png" />
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="Images\Location\Home.png" />
+    <Resource Include="Images\Location\AcornGarden.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Location\Bear.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Location\HealingFountain.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Location\Home.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Location\HoneyGarden.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Location\KarloHouse.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Location\MarkFarm.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Location\MarkHouse.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Location\Shop.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Location\TownGate.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Location\TownHall.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
 
  </Project>
