@@ -6,6 +6,11 @@
         xmlns:local="clr-namespace:CC31N_TeamVishnu" xmlns:models="clr-namespace:Engine.Models;assembly=Engine" d:DataContext="{d:DesignInstance Type=models:Player}"
         mc:Ignorable="d"
         Title="MainWindow" Height="768" Width="1024">
+
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibility"/>
+    </Window.Resources>
+        
     <Grid>
         <Grid.RowDefinitions>
                 <RowDefinition Height="50"/>
@@ -107,7 +112,40 @@
             </Grid>
             <Label Grid.Row="1" Grid.Column="0" Content="Enemy information" Background="RoyalBlue"/>
         </Grid>
-        <Label Grid.Row="2" Grid.Column="2" Content="Navigation Buttons" Background="Gainsboro"/>
-
+        
+        <!--Navigation buttons-->
+        <Grid Grid.Row="2" Grid.Column="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+             
+            <Button Grid.Row="0" Grid.Column="1" 
+                    Height="25" Width="65" Margin="10" 
+                    Visibility="{Binding HasLocationToNorth, Converter={StaticResource BooleanToVisibility}}"
+                    Click="OnClick_MoveNorth"
+                    Content="North"/>
+            <Button Grid.Row="1" Grid.Column="0" 
+                    Height="25" Width="65" Margin="10" 
+                    Visibility="{Binding HasLocationToWest, Converter={StaticResource BooleanToVisibility}}" 
+                    Click="OnClick_MoveWest"
+                    Content="West"/>
+            <Button Grid.Row="1" Grid.Column="2" 
+                    Height="25" Width="65" Margin="10" 
+                    Visibility="{Binding HasLocationToEast, Converter={StaticResource BooleanToVisibility}}" 
+                    Click="OnClick_MoveEast"
+                    Content="East"/>
+            <Button Grid.Row="2" Grid.Column="1" 
+                    Height="25" Width="65" Margin="10" 
+                    Visibility="{Binding HasLocationToSouth, Converter={StaticResource BooleanToVisibility}}" 
+                    Click="OnClick_MoveSouth"
+                    Content="South"/>
+        </Grid>
     </Grid>
 </Window>
