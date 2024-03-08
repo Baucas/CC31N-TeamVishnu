@@ -36,7 +36,7 @@ namespace Engine.Models
             set
             {
                 _characterClass = value;
-                OnPropertyChanged("CharacterClass");
+                OnPropertyChanged(nameof(CharacterClass));
             }
         }
         public int HitPoints
