@@ -48,7 +48,6 @@ namespace Engine.View_Models
             };
 
 
-
             CurrentWorld = WorldFactory.CreateWorld();
 
             CurrentLocation = CurrentWorld.LocationAt(0, 0);
