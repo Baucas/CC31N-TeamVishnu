@@ -22,13 +22,13 @@ namespace Engine.Factories
                     Description = "Kill the bears in the honey garden.",
                     ItemsToComplete = new List<ItemQuantity>
                     {
-                        new ItemQuantity { ItemID = 10, Quantity = 5 } 
+                        new ItemQuantity(10, 5)
                     },
                     RewardExpPoints = 100,
                     RewardGold = 100,
                     RewardItems = new List<ItemQuantity>
                     {
-                        new ItemQuantity { ItemID = 201, Quantity = 1 }
+                        new ItemQuantity(201, 1)
                     }
                 },
 
@@ -39,13 +39,13 @@ namespace Engine.Factories
                     Description = "Kill the anaconda that is eating my livestocks.",
                     ItemsToComplete = new List<ItemQuantity>
                     {
-                        new ItemQuantity { ItemID = 11, Quantity = 1 }
+                        new ItemQuantity(11, 1)
                     },
                     RewardExpPoints = 75,
                     RewardGold = 75,
                     RewardItems = new List<ItemQuantity>
                     {
-                        new ItemQuantity { ItemID = 201, Quantity = 1 }
+                        new ItemQuantity(201, 1)
                     }
                 },
 
@@ -56,13 +56,13 @@ namespace Engine.Factories
                     Description = "Kill the boar's that is eating my plants.",
                     ItemsToComplete = new List<ItemQuantity>
                     {
-                        new ItemQuantity { ItemID = 10, Quantity = 5 }
+                        new ItemQuantity(10, 5)
                     },
                     RewardExpPoints = 90,
                     RewardGold = 60,
                     RewardItems = new List<ItemQuantity>
                     {
-                        new ItemQuantity { ItemID = 201, Quantity = 1 }
+                        new ItemQuantity(201, 1)
                     }
                 },
             };
@@ -74,3 +74,4 @@ namespace Engine.Factories
         }
     }
 }
+ 

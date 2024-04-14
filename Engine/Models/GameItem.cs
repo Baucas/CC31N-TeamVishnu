@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Engine.Models
 {
-    internal class GameItem
+    public class GameItem
     {
         public int ItemTypeID { get; set; }
         public string Name { get; set; }
