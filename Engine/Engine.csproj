@@ -8,17 +8,16 @@
 
   <ItemGroup>
     <None Remove="Images\Location\AcornGarden.png" />
-    <None Remove="Images\Location\Anaconda.png" />
     <None Remove="Images\Location\Bear.png" />
-    <None Remove="Images\Location\Bear1.png" />
     <None Remove="Images\Location\BearClaw.png" />
     <None Remove="Images\Location\BearFur.png" />
     <None Remove="Images\Location\BearMeat.png" />
-    <None Remove="Images\Location\Boar.png" />
     <None Remove="Images\Location\BoarHide.png" />
     <None Remove="Images\Location\BoarTusk.png" />
     <None Remove="Images\Location\BrokenIronSword.png" />
     <None Remove="Images\Location\DiamondSword.png" />
+    <None Remove="Images\Location\GameBackground.png" />
+    <None Remove="Images\Location\GameBackground1.png" />
     <None Remove="Images\Location\HealingFountain.png" />
     <None Remove="Images\Location\Home.png" />
     <None Remove="Images\Location\HoneyGarden.png" />
@@ -32,19 +31,16 @@
     <None Remove="Images\Location\TownGate.png" />
     <None Remove="Images\Location\TownHall.png" />
     <None Remove="Images\Location\WoodenSword.png" />
+    <None Remove="Images\Monster\Anaconda.png" />
+    <None Remove="Images\Monster\Bear1.png" />
+    <None Remove="Images\Monster\Boar.png" />
   </ItemGroup>
 
   <ItemGroup>
     <Resource Include="Images\Location\AcornGarden.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Images\Location\Anaconda.png">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
     <Resource Include="Images\Location\Bear.png">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Images\Location\Bear1.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Images\Location\BearClaw.png">
@@ -54,9 +50,6 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Images\Location\BearMeat.png">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Images\Location\Boar.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Images\Location\BoarHide.png">
@@ -69,6 +62,12 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Images\Location\DiamondSword.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Location\GameBackground.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Location\GameBackground1.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Images\Location\HealingFountain.png">
@@ -110,10 +109,15 @@
     <Resource Include="Images\Location\WoodenSword.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Factories\NewFolder\" />
+    <Resource Include="Images\Monster\Anaconda.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Monster\Bear1.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Monster\Boar.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
 
  </Project>

@@ -7,70 +7,55 @@ using System.Threading.Tasks;
 
 namespace Engine.Factories
 {
-    public static class QuestFactory
+    internal static class QuestFactory
     {
-        private static List<Quest> _quests;
-
+        private static readonly List<Quest> _quests = new List<Quest>();
         static QuestFactory()
         {
-            _quests = new List<Quest>
-            {
-                new Quest
-                {
-                    ID = 1,
-                    Name = "Town Mayor",
-                    Description = "Kill the bears in the honey garden.",
-                    ItemsToComplete = new List<ItemQuantity>
-                    {
-                        new ItemQuantity(10, 5)
-                    },
-                    RewardExpPoints = 100,
-                    RewardGold = 100,
-                    RewardItems = new List<ItemQuantity>
-                    {
-                        new ItemQuantity(201, 1)
-                    }
-                },
+            List<ItemQuantity> itemsToComplete = new List<ItemQuantity>();
+            List<ItemQuantity> rewardItems = new List<ItemQuantity>();
+            itemsToComplete.Add(new ItemQuantity(9001, 25));
+            itemsToComplete.Add(new ItemQuantity(9002, 75));
+            itemsToComplete.Add(new ItemQuantity(9003, 100));
+            rewardItems.Add(new ItemQuantity(1002, 6));
 
-                new Quest
-                {
-                    ID = 2,
-                    Name = "Mark",
-                    Description = "Kill the anaconda that is eating my livestocks.",
-                    ItemsToComplete = new List<ItemQuantity>
-                    {
-                        new ItemQuantity(11, 1)
-                    },
-                    RewardExpPoints = 75,
-                    RewardGold = 75,
-                    RewardItems = new List<ItemQuantity>
-                    {
-                        new ItemQuantity(201, 1)
-                    }
-                },
+            List<ItemQuantity> itemsToComplete1 = new List<ItemQuantity>();
+            List<ItemQuantity> rewardItems1 = new List<ItemQuantity>();
+            itemsToComplete1.Add(new ItemQuantity(9004, 25));
+            itemsToComplete1.Add(new ItemQuantity(9005, 75));
+            itemsToComplete1.Add(new ItemQuantity(9006, 100));
+            rewardItems1.Add(new ItemQuantity(1002, 5));
 
-                new Quest
-                {
-                    ID = 3,
-                    Name = "Karlo",
-                    Description = "Kill the boar's that is eating my plants.",
-                    ItemsToComplete = new List<ItemQuantity>
-                    {
-                        new ItemQuantity(10, 5)
-                    },
-                    RewardExpPoints = 90,
-                    RewardGold = 60,
-                    RewardItems = new List<ItemQuantity>
-                    {
-                        new ItemQuantity(201, 1)
-                    }
-                },
-            };
+            List<ItemQuantity> itemsToComplete2 = new List<ItemQuantity>();
+            List<ItemQuantity> rewardItems2 = new List<ItemQuantity>();
+            itemsToComplete2.Add(new ItemQuantity(9007, 75));
+            itemsToComplete2.Add(new ItemQuantity(9008, 100));
+            rewardItems2.Add(new ItemQuantity(1002, 7));
+
+            _quests.Add(new Quest(1,
+                                  "Defeat the bears in the Honey Garden.",
+                                  "Collect drops",
+                                  itemsToComplete,
+                                  50, 100,
+                                  rewardItems));
+
+            _quests.Add(new Quest(2,
+                                  "Kill the anaconda that is eating my livestocks.",
+                                  "Collect drops.",
+                                  itemsToComplete,
+                                  60, 100,
+                                  rewardItems1));
+            _quests.Add(new Quest(3,
+                                  "Kill the boar's that is eating my plants.",
+                                  "Collect drops.",
+                                  itemsToComplete,
+                                  30, 60,
+                                  rewardItems2));
         }
 
-        internal static Quest GetQuestByID(int questID)
+        internal static Quest GetQuestByID(int id)
         {
-            return _quests.FirstOrDefault(q => q.ID == questID);
+            return _quests.FirstOrDefault(quest => quest.ID == id);
         }
     }
 }

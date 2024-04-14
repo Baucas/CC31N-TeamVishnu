@@ -1,108 +1,65 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 namespace Engine.Models
 {
-    public class Player : BaseNotificationClass
+    public class Player : LivingEntity
     {
-        private string _name;
+        #region Properties
         private string _characterClass;
-        private int _hitPoints;      
         private int _experiencePoints;
-        private int _level;
-        private int _gold;
-        public string Name 
-        { 
-            get
-            { 
-                return _name;
-            }
-            set
-            {
-                _name = value;
-                OnPropertyChanged(nameof(Name));
-            }
-        }
-        public string CharacterClass 
-        { 
-            get
-            {  
-                return _characterClass; 
-            }               
+        public string CharacterClass
+        {
+            get { return _characterClass; }
             set
             {
                 _characterClass = value;
-                OnPropertyChanged(nameof(CharacterClass));
+                OnPropertyChanged();
             }
-        }
-        public int HitPoints
-        { 
-            get
-            {
-                return _hitPoints;
-            }
-            set
-            {
-                _hitPoints = value;
-                OnPropertyChanged(nameof(HitPoints));
-            }
-
         }
         public int ExperiencePoints
-        { 
-            get
-            {
-                return _experiencePoints;
-            }
-            set
+        {
+            get { return _experiencePoints; }
+            private set
             {
                 _experiencePoints = value;
-                OnPropertyChanged(nameof(ExperiencePoints));
+                OnPropertyChanged();
+                SetLevelAndMaximumHitPoints();
             }
         }
-        public int Level 
-        { 
-            get
-            {
-                return _level;
-            }
-            set
-            {
-                _level = value;
-                OnPropertyChanged(nameof(Level));
-            }
-        }
-        public int Gold 
-        { 
-            get
-            {
-                return _gold;
-            }
-            set
-            {
-                _gold = value;
-                OnPropertyChanged(nameof(Gold));
-            }
-        }
-        public ObservableCollection<GameItem> Inventory { get; set; }
-        public List<GameItem> Weapons =>
-            Inventory.Where(i => i is Weapon).ToList();
-
-        public ObservableCollection<QuestStatus> Quests { get; set; }
-        public Player()
+        public ObservableCollection<QuestStatus> Quests { get; }
+        public ObservableCollection<Recipe> Recipes { get; }
+        #endregion
+        public event EventHandler OnLeveledUp;
+        public Player(string name, string characterClass, int experiencePoints,
+                      int maximumHitPoints, int currentHitPoints, int gold) :
+            base(name, maximumHitPoints, currentHitPoints, gold)
         {
-            Inventory = new ObservableCollection<GameItem>();
+            CharacterClass = characterClass;
+            ExperiencePoints = experiencePoints;
             Quests = new ObservableCollection<QuestStatus>();
+            Recipes = new ObservableCollection<Recipe>();
         }
-        public void AddItemToInventory(GameItem item)
+        public void AddExperience(int experiencePoints)
         {
-            Inventory.Add(item);
-            OnPropertyChanged(nameof(Weapons));
+            ExperiencePoints += experiencePoints;
+        }
+        public void LearnRecipe(Recipe recipe)
+        {
+            if (!Recipes.Any(r => r.ID == recipe.ID))
+            {
+                Recipes.Add(recipe);
+            }
+        }
+        private void SetLevelAndMaximumHitPoints()
+        {
+            int originalLevel = Level;
+            Level = (ExperiencePoints / 100) + 1;
+            if (Level != originalLevel)
+            {
+                MaximumHitPoints = Level * 10;
+                OnLeveledUp?.Invoke(this, System.EventArgs.Empty);
+            }
         }
     }
 }

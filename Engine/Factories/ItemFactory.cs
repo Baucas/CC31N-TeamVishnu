@@ -1,4 +1,5 @@
-﻿using Engine.Models;
+﻿using Engine.Actions;
+using Engine.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,39 +8,50 @@ using System.Threading.Tasks;
 
 namespace Engine.Factories
 {
-    public class ItemFactory
+    public static class ItemFactory
     {
-        private static List<GameItem> _standardGameItems;
-
+        private static readonly List<GameItem> _standardGameItems = new List<GameItem>();
         static ItemFactory()
         {
-            _standardGameItems = new List<GameItem>();
-            _standardGameItems.Add(new Weapon(1001, "Wooden Sword", 5, "Hope", 1, 2));
-            _standardGameItems.Add(new Weapon(1002, "Broken Iron Sword", 10, "Shattered Valor", 1, 3));
-            _standardGameItems.Add(new Weapon(1003, "Diamond Sword", 200, "Fractured Brilliance", 3, 5));
-            _standardGameItems.Add(new GameItem(9001, "Bear Claws", 3, "BearClaw.png"));
-            _standardGameItems.Add(new GameItem(9002, "Bear meat", 2, "BearMeat.png"));
-            _standardGameItems.Add(new GameItem(9003, "Thick Bear Fur", 5, "BearFur.png"));
-            _standardGameItems.Add(new GameItem(9004, "Snake meat", 3, "SnakeMeat.png"));
-            _standardGameItems.Add(new GameItem(9005, "Venomous fang", 2, "SnakeFangs.png"));
-            _standardGameItems.Add(new GameItem(9006, "Snake skin", 5, "SnakeSkin.png"));
-            _standardGameItems.Add(new GameItem(9007, "Boar tusk", 2, "BearTusk.png"));
-            _standardGameItems.Add(new GameItem(9008, "Boar hide", 4, "BearHide.png"));
 
+            BuildWeapon(1001, "Wooden Sword", 1, 2, 3);
+            BuildWeapon(1002, "Broken Iron Sword", 10, 3, 5);
+            BuildWeapon(1003, "Diamond Sword", 100, 5, 10);
+            BuildMiscellaneousItem(9001, "BearClaw", 1);
+            BuildMiscellaneousItem(9002, "BearMeat", 2);
+            BuildMiscellaneousItem(9003, "BearFur", 1);
+            BuildMiscellaneousItem(9004, "SnakeMeat", 2);
+            BuildMiscellaneousItem(9005, "SnakeFangs", 1);
+            BuildMiscellaneousItem(9006, "SnakeSkin", 2);
+            BuildMiscellaneousItem(9007, "BoarTusk", 1);
+            BuildMiscellaneousItem(9008, "BoarHide", 2);
         }
 
         public static GameItem CreateGameItem(int itemTypeID)
         {
-            GameItem item = _standardGameItems.FirstOrDefault(i => i.ItemTypeID == itemTypeID);
-            if (item != null)
-            {
-                GameItem standardItem = item.Clone();
-                return standardItem;
-            }
-            else
-            {
-                return null;
-            }
+            return _standardGameItems.FirstOrDefault(item => item.ItemTypeID == itemTypeID)?.Clone();
         }
+        private static void BuildMiscellaneousItem(int id, string name, int price)
+        {
+            _standardGameItems.Add(new GameItem(GameItem.ItemCategory.Miscellaneous, id, name, price));
+        }
+        private static void BuildWeapon(int id, string name, int price,
+                                        int minimumDamage, int maximumDamage)
+        {
+            GameItem weapon = new GameItem(GameItem.ItemCategory.Weapon, id, name, price, true);
+            weapon.Action = new AttackWithWeapon(weapon, minimumDamage, maximumDamage);
+            _standardGameItems.Add(weapon);
+        }
+        private static void BuildHealingItem(int id, string name, int price, int hitPointsToHeal)
+        {
+            GameItem item = new GameItem(GameItem.ItemCategory.Consumable, id, name, price);
+            item.Action = new Heal(item, hitPointsToHeal);
+            _standardGameItems.Add(item);
+        }
+        public static string ItemName(int itemTypeID)
+        {
+            return _standardGameItems.FirstOrDefault(i => i.ItemTypeID == itemTypeID)?.Name ?? "";
+        }
+
     }
 }
