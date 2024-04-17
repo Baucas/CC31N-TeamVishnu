@@ -38,9 +38,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="Images\Background\Player.png">
+    <Content Include="Images\Background\Player.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
+    </Content>
     <Resource Include="Images\Location\AcornGarden.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
