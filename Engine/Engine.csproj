@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Images\Background\Player.png" />
     <None Remove="Images\Location\AcornGarden.png" />
     <None Remove="Images\Location\Bear.png" />
     <None Remove="Images\Location\BearClaw.png" />
@@ -37,6 +38,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Images\Background\Player.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Images\Location\AcornGarden.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>

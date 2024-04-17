@@ -13,12 +13,12 @@ namespace Engine.Factories
             World newWorld = new World();
             newWorld.AddLocation(0, 0, "Home",
                 "This is your home",
-                "Home.png");
+                "C:\\Users\\Karell\\Source\\Repos\\CC31N-TeamVishnu\\Engine\\Images\\Location\\Home.png");
 
 
             newWorld.AddLocation(0, -1, "Town Hall",
                 "The town hall is so common",
-                "TownHall.png");
+                "C:\\Users\\Karell\\Source\\Repos\\CC31N-TeamVishnu\\Engine\\Images\\Location\\TownHall.png");
             newWorld.LocationAt(0, -1).QuestsAvailableHere.Add(QuestFactory.GetQuestByID(1));
 
             newWorld.AddLocation(1, -1, "Town's Gate",

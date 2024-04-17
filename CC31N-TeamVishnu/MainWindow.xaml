@@ -132,8 +132,8 @@
             </Border>
         </Grid>
         <!-- Inventory and Quests -->
-        <Grid Grid.Row="2" Grid.Column="0"
-              Background="BurlyWood">
+        <Grid Grid.Row="1" Grid.Column="0"
+              Background="BurlyWood" Height="225" Grid.RowSpan="2" VerticalAlignment="Bottom">
             <TabControl>
                 <TabItem Header="Inventory">
                     <DataGrid ItemsSource="{Binding CurrentPlayer.GroupedInventory}"
@@ -167,6 +167,26 @@
                         </DataGrid.Columns>
                     </DataGrid>
                 </TabItem>
+                <TabItem Header="Recipes">
+                    <DataGrid ItemsSource="{Binding CurrentPlayer.Recipes}"
+                  AutoGenerateColumns="False"
+                  HeadersVisibility="Column">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Name"
+                                    Binding="{Binding Name}"
+                                    Width="*"/>
+                            <DataGridTemplateColumn MinWidth="75">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button Click="OnClick_Craft"
+                                    Width="55"
+                                    Content="Craft"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </TabItem>
             </TabControl>
         </Grid>
         <!-- Action controls -->
@@ -193,36 +213,27 @@
                     <ColumnDefinition Width="10"/>
                     <ColumnDefinition Width="50"/>
                 </Grid.ColumnDefinitions>
-                <ComboBox Grid.Row="0" Grid.Column="0"
+                <ComboBox Grid.Row="1" Grid.Column="0"
                           ItemsSource="{Binding CurrentPlayer.Weapons}"
                           SelectedItem="{Binding CurrentWeapon}"
                           DisplayMemberPath="Name"
                           SelectedValuePath="ID"/>
+                <ComboBox Grid.Row="2" Grid.Column="0"
+                          Visibility="{Binding CurrentPlayer.HasConsumable, Converter={StaticResource BooleanToVisibility}}"
+                          ItemsSource="{Binding CurrentPlayer.Consumables}"
+                          SelectedItem="{Binding CurrentPlayer.CurrentConsumable}"
+                          DisplayMemberPath="Name" Margin="0,25,0,-28"/>
+                <ComboBox Grid.Row="0" Grid.Column="0"
+                          Visibility="{Binding HasMonster, Converter={StaticResource BooleanToVisibility}}"
+                          ItemsSource="{Binding CurrentPlayer.Weapons}"
+                          SelectedItem="{Binding CurrentPlayer.CurrentWeapon}"
+                          DisplayMemberPath="Name" Height="26" Grid.RowSpan="2" VerticalAlignment="Top"/>
                 <Button Grid.Row="0" Grid.Column="2"
                         Content="Use"
                         Click="OnClick_AttackMonster"/>
             </Grid>
 
-            <TabItem Header="Recipes">
-                <DataGrid ItemsSource="{Binding CurrentPlayer.Recipes}"
-                              AutoGenerateColumns="False"
-                              HeadersVisibility="Column">
-                    <DataGrid.Columns>
-                        <DataGridTextColumn Header="Name"
-                                                Binding="{Binding Name}"
-                                                Width="*"/>
-                        <DataGridTemplateColumn MinWidth="75">
-                            <DataGridTemplateColumn.CellTemplate>
-                                <DataTemplate>
-                                    <Button Click="OnClick_Craft"
-                                                Width="55"
-                                                Content="Craft"/>
-                                </DataTemplate>
-                            </DataGridTemplateColumn.CellTemplate>
-                        </DataGridTemplateColumn>
-                    </DataGrid.Columns>
-                </DataGrid>
-            </TabItem>
+            
 
             <!-- Movement Controls -->
             <Grid Grid.Row="0" Grid.Column="1">
@@ -274,20 +285,10 @@
                         <ColumnDefinition Width="10"/>
                         <ColumnDefinition Width="50"/>
                     </Grid.ColumnDefinitions>
-                    <ComboBox Grid.Row="0" Grid.Column="0"
-                          Visibility="{Binding HasMonster, Converter={StaticResource BooleanToVisibility}}"
-                          ItemsSource="{Binding CurrentPlayer.Weapons}"
-                          SelectedItem="{Binding CurrentPlayer.CurrentWeapon}"
-                          DisplayMemberPath="Name"/>
                     <Button Grid.Row="0" Grid.Column="2"
                         Visibility="{Binding HasMonster, Converter={StaticResource BooleanToVisibility}}"
                         Content="Use"
                         Click="OnClick_AttackMonster"/>
-                    <ComboBox Grid.Row="1" Grid.Column="0"
-                          Visibility="{Binding CurrentPlayer.HasConsumable, Converter={StaticResource BooleanToVisibility}}"
-                          ItemsSource="{Binding CurrentPlayer.Consumables}"
-                          SelectedItem="{Binding CurrentPlayer.CurrentConsumable}"
-                          DisplayMemberPath="Name"/>
                     <Button Grid.Row="1" Grid.Column="2"
                         Visibility="{Binding CurrentPlayer.HasConsumable, Converter={StaticResource BooleanToVisibility}}"
                         Content="Use"
@@ -295,5 +296,28 @@
                 </Grid>
             </Grid>
         </Grid>
+        <Border Grid.Row="1"
+    Background="Fuchsia"
+    BorderThickness="1" Margin="0,182,0,0">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <TextBlock Grid.Row="0"
+            HorizontalAlignment="Center"
+            Height="Auto"
+            Text="Player Image" />
+                <Image x:Name="imagePicture"  Source="C:\Users\Karell\Source\Repos\CC31N-TeamVishnu\Engine\Images\Background\Player.png" Stretch="Fill"  Grid.RowSpan="2"  />
+
+
+                <Label Grid.Row="1" Grid.Column="0" BorderBrush="DarkRed" BorderThickness="4"  Canvas.ZIndex="1"   FontSize="21" Foreground="Red"  Grid.RowSpan="2"/>
+
+
+
+            </Grid>
+        </Border>
     </Grid>
 </Window>
